@@ -19,6 +19,7 @@ class SentMemesTableViewController: UITableViewController, UITableViewDelegate, 
         //pull the MeMes from the AppDelegate
         syncMemesFromAppDelegate()
         tableView.reloadData()
+        EditButton.enabled = (memes.count > 0)
     }
 
     func syncMemesFromAppDelegate() {
