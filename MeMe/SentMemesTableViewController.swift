@@ -53,6 +53,7 @@ class SentMemesTableViewController: UITableViewController, UITableViewDelegate, 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         memes.removeAtIndex(indexPath.row)
         syncMemesToAppDelegate()
+        EditButton.enabled = (memes.count > 0)
         tableView.reloadData()
     }
     

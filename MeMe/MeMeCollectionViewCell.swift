@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class MeMeCollectionViewCell: UICollectionViewCell {
-    
+    //this outlet is required to be able to set the image for each and every cell coming along in the collection View Controller
     @IBOutlet weak var imageView: UIImageView!
     
 }

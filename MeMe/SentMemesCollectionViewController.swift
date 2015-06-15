@@ -24,13 +24,13 @@ class SentMemesCollectionViewController : UICollectionViewController, UICollecti
     }
     
     @IBAction func newMeMe(sender: AnyObject) {
+        // start the Composer
         var meMeComposer = storyboard!.instantiateViewControllerWithIdentifier("MeMeComposer") as! UIViewController
-        //self.presentViewController(meMeComposer, animated: true, completion: nil)
-        //self.navigationController?.pushViewController(meMeComposer, animated: true)
         self.presentViewController(meMeComposer, animated: true, completion: nil)
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        // use the class MeMeCollectionViewCell to be able to access the outlet referencing to the image in the cell and set the image
         var cell = self.collectionView?.dequeueReusableCellWithReuseIdentifier("AMeMe", forIndexPath: indexPath) as! MeMeCollectionViewCell
         cell.imageView.image = memes[indexPath.row].meMeImage
         return cell

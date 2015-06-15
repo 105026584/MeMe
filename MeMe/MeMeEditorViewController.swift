@@ -90,16 +90,6 @@ class MeMeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         unsubscribeFromKeyboardNotifications()
     }
     
-    
-    func subscribeToKeyboardNotifications() {
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:"    , name: UIKeyboardWillShowNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:"    , name: UIKeyboardWillHideNotification, object: nil)
-        
-    }
-    
-    
     func textFieldDidBeginEditing(textField: UITextField) {
         //just empty the field in case the content does not match "type here"
         if(textField.text == defaultText) {
@@ -121,6 +111,13 @@ class MeMeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // the following functions are required to change the y of the whole frame, moving up the whole frame by the height of the keyboard to avoid overlay of textfields by the keyboard
+    
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:"    , name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:"    , name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
     func unsubscribeFromKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillShowNotification, object: nil)
@@ -136,7 +133,6 @@ class MeMeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        //self.view.frame.origin.y += getKeyboardHeight(notification)
         self.view.frame.origin.y = 0.0
     }
     
@@ -174,6 +170,8 @@ class MeMeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topText.hidden = false
         bottomText.hidden = false
         shareMeMeButton.enabled = true
+        
+        //TODO - position the textfields within the image itself ( not only imageView )
     }
     
     @IBAction func cancelComposer(sender: AnyObject) {
